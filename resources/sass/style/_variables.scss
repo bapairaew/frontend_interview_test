@@ -1,2 +1,33 @@
 $assetPath: "/";
 $fontPath: "#{$assetPath}fonts/";
+
+$form-background-color:   rgb(238, 238, 238);
+$form-error-color:        rgb(255, 50, 70);
+$form-success-color:      rgb(54, 170, 31);
+$form-saving-color:       rgb(200, 200, 200);
+$form-message-height:     40px;
+$form-message-color:      rgb(255, 255, 255);
+$transition-duration:     400ms;
+
+$selectable-size:  16px;
+$selectable-left:  25px;
+$selectable-top:   -2px;
+
+
+// TODO: repeated code with variable.less
+$brand-primary:             rgb(254, 185, 1);
+$screen-xs:                  480px;
+$screen-xs-min:              $screen-xs;
+$screen-phone:               $screen-xs-min;
+$screen-sm:                  768px;
+$screen-sm-min:              $screen-sm;
+$screen-tablet:              $screen-sm-min;
+$screen-md:                  992px;
+$screen-md-min:              $screen-md;
+$screen-desktop:             $screen-md-min;
+$screen-lg:                  1200px;
+$screen-lg-min:              $screen-lg;
+$screen-lg-desktop:          $screen-lg-min;
+$screen-xs-max:              ($screen-sm-min - 1);
+$screen-sm-max:              ($screen-md-min - 1);
+$screen-md-max:              ($screen-lg-min - 1);

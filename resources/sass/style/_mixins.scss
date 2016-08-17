@@ -1,0 +1,54 @@
+@mixin transition($transition...) {
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+  -webkit-transition: $transition;
+  transition:         $transition;
+}
+
+@mixin transform($transform...) {
+  -moz-transform:    $transform;
+  -o-transform:      $transform;
+  -webkit-transform: $transform;
+  transform:         $transform;
+}
+
+@mixin selectable() {
+  overflow: hidden;
+
+  label {
+    padding-left: 10px;
+  }
+
+  input {
+    margin-left: -50px !important;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      cursor: pointer;
+    }
+
+    &:before {
+      height: $selectable-size;
+      width: $selectable-size;
+      background: rgb(255, 255, 255);
+      left: $selectable-left;
+      top: $selectable-top;
+    }
+
+    &:after {
+      height: $selectable-size - 8;
+      width: $selectable-size - 8;
+      @include transform(scale(0));
+      @include transition(transform $transition-duration);
+    }
+
+    &:checked {
+      &:after {
+        @include transform(scale(1));
+      }
+    }
+  }
+
+}

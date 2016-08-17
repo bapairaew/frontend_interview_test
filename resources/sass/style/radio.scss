@@ -1,0 +1,16 @@
+.mc-radio {
+  @include selectable();
+
+  input {
+    &:before,
+    &:after {
+      border-radius: 50%;
+    }
+
+    &:after {
+      background: $brand-primary;
+      left: $selectable-left + 4;
+      top: $selectable-top + 4;
+    }
+  }
+}

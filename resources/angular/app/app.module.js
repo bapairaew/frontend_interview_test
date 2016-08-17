@@ -3,9 +3,9 @@
 
     angular.module('app', [
         // vendor packages
-        // 'ngResource',
-        // 'ui.router',
-        
-        'mcmakler'
+        'ui.router',
+
+        'mcmakler',
+        'geocode'
     ])
 })();

@@ -1,0 +1,107 @@
+.amazing-form {
+  margin: 1em;
+  background-color: $form-background-color;
+  overflow: hidden;
+
+  @media (max-width: $screen-sm-max) {
+    margin: 0;
+  }
+
+  h1 {
+    margin-bottom: 1em;
+  }
+
+  label {
+    font-weight: normal;
+  }
+
+  form {
+    padding: 1em 4em;
+
+    @include transform(translateY(-$form-message-height / 2));
+    @include transition(transform $transition-duration);
+
+
+    @media (max-width: $screen-sm-max) {
+      @include transform(translateY(0));
+      padding: 1em;
+    }
+  }
+
+
+  &.show-message {
+    .message-container {
+      @include transform(translateY(0));
+      opacity: 1;
+    }
+
+    form {
+      @include transform(translateY(0));
+      @media (max-width: $screen-sm-max) {
+        @include transform(translateY($form-message-height));
+      }
+    }
+  }
+
+  .message-container {
+    width: 100%;
+    overflow: hidden;
+    height: $form-message-height;
+    opacity: 0;
+
+    @include transform(translateY(-$form-message-height));
+    @include transition(transform $transition-duration);
+
+    @media (max-width: $screen-sm-max) {
+      position: fixed;
+    }
+
+    .message {
+      height: 100%;
+      padding: 10px;
+      text-align: center;
+      color: $form-message-color;
+      @include transition(transform $transition-duration);
+
+      @media (max-width: $screen-sm-max) {
+        font-size: .9em;
+      }
+    }
+
+    .saving-message {
+      background: $form-saving-color;
+    }
+
+    .success-message {
+      background: $form-success-color;
+    }
+
+    .fail-message {
+      background: $form-error-color;
+    }
+
+    &.valid {
+      .saving-message,
+      .success-message,
+      .fail-message {
+        @include transform(translateY(-$form-message-height));
+      }
+    }
+
+    &.invalid {
+      .saving-message,
+      .success-message,
+      .fail-message {
+        @include transform(translateY(-$form-message-height * 2));
+      }
+    }
+  }
+
+  .submit-button {
+    padding: 8px 12px;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 800;
+  }
+}

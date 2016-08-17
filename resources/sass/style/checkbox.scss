@@ -1,0 +1,13 @@
+.mc-checkbox {
+  @include selectable();
+
+  input {
+    &:after {
+      content: '\2714';
+      font-size: 10px;
+      color: $brand-primary;
+      left: $selectable-left + 4;
+      top: $selectable-top + 2;
+    }
+  }
+}

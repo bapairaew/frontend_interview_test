@@ -3,57 +3,147 @@
 <html ng-app="app" ng-controller="AppCtrl">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>McMakler frontend test</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>McMakler frontend test</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/vendor.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/vendor.css">
 
-    <script src="js/vendor.js"></script>
+  <script src="js/vendor.js"></script>
 
 </head>
 
 <body>
+  <!-- Cannot separate file without setting dev server because of cross origin issue -->
+  <script type="text/ng-template" id="/form.html">
+    <div class="amazing-form" ng-class="{ 'show-message': formState !== 0 }" ng-controller="FormCtrl">
+      <div class="message-container" ng-class="{ valid: isFormValid && formState === 2, invalid: !isFormValid && formState === 2, saving: formState === 1 }">
+        <div class="message saving-message">Saving...</div>
+        <div class="message success-message">{{successMessage}}</div>
+        <div class="message fail-message">{{failMessage}}</div>
+      </div>
+      <form class="form-horizontal" ng-submit="save()">
+        <h1><center>Search location</center></h1>
+        <div class="form-group">
+          <label for="inputHouseNumber" class="col-sm-6 control-label">House Number</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputHouseNumber" ng-model="address.houseNumber">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputStreet" class="col-sm-6 control-label">Street</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputStreet" ng-model="address.street">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPostalCode" class="col-sm-6 control-label">Postal Code</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputPostalCode" ng-model="address.postalCode">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputCity" class="col-sm-6 control-label">City</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="inputCity" ng-model="address.city">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-6 control-label">Sex</label>
+          <div class="col-sm-6">
+            <div class="radio-inline mc-radio">
+              <label>
+                <input type="radio" name="optionsSex" id="optionsSexMale" value="male" checked>
+                Male
+              </label>
+            </div>
+            <div class="radio-inline mc-radio">
+              <label>
+                <input type="radio" name="optionsSex" id="optionsSexFemale" value="Female">
+                Female
+              </label>
+            </div>
+            <div class="radio-inline mc-radio">
+              <label>
+                <input type="radio" name="optionsSex" id="optionsSexOther" value="Other">
+                Other
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-6 control-label">Role</label>
+          <div class="col-sm-6">
+            <div class="radio-inline mc-radio">
+              <label>
+                <input type="radio" name="optionsRole" id="optionsRoleCarry" value="carry" checked>
+                Carry
+              </label>
+            </div>
+            <div class="radio-inline mc-radio">
+              <label>
+                <input type="radio" name="optionsRole" id="optionsRoleMid" value="mid">
+                Mid
+              </label>
+            </div>
+            <div class="radio-inline mc-radio">
+              <label>
+                <input type="radio" name="optionsRole" id="optionsRoleOfflane" value="offlane">
+                Offlane
+              </label>
+            </div>
+            <div class="radio-inline mc-radio">
+              <label>
+                <input type="radio" name="optionsRole" id="optionsRoleSupport" value="support">
+                Support
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-6 control-label">Social Network</label>
+          <div class="col-sm-6">
+            <div class="checkbox-inline mc-checkbox">
+              <label>
+                <input type="checkbox" name="optionsSocial" id="optionsSocialFacebook" value="facebook">
+                Facebook
+              </label>
+            </div>
+            <div class="checkbox-inline mc-checkbox">
+              <label>
+                <input type="checkbox" name="optionsSocial" id="optionsSocialTwitter" value="twitter">
+                Twitter
+              </label>
+            </div>
+            <div class="checkbox-inline mc-checkbox">
+              <label>
+                <input type="checkbox" name="optionsSocial" id="optionsSocialInstragram" value="instragram">
+                Instragram
+              </label>
+            </div>
+            <div class="checkbox-inline mc-checkbox">
+              <label>
+                <input type="checkbox" name="optionsSocial" id="optionsSocialOther" value="other">
+                Other
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-6 col-sm-6">
+            <button type="submit" class="btn btn-block btn-primary submit-button" ng-disabled="formState === 1">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </script>
 
-<div class="container" ng-controller="TestCtrl">
-    <form>
-        <div class="form-group">
-            <label for="inputText1">Street</label>
-            <input type="text" class="form-control" id="inputText1" placeholder="Street" ng-model="street">
-        </div>
-        <div class="form-group">
-            <label for="inputText2">House Number</label>
-            <input type="text" class="form-control" id="inputText2" placeholder="House Number" ng-model="housenumber">
-        </div>
-        <div class="form-group">
-            <label for="inputText3">Postal Code</label>
-            <input type="text" class="form-control" id="inputText3" placeholder="Postal Code" ng-model="postalcode">
-        </div>
-        <div class="form-group">
-            <label for="inputText4">City</label>
-            <input type="text" class="form-control" id="inputText4" placeholder="City" ng-model="city">
-        </div>
-        <div class="form-group">
-            <label for="radio1">Radio1</label>
-            <input type="radio" id="radio1" name="radio" ng-model="radio" value="1">
-
-            <label for="radio2">Radio2</label>
-            <input type="radio" id="radio2" name="radio" ng-model="radio" value="2">
-        </div>
-        <div class="form-group">
-            <label for="check1">Check1</label>
-            <input type="checkbox" id="check1" ng-model="check">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-</div>
-
-<script src="js/angular.js"></script>
-<script src="js/scripts.js"></script>
-
+  <div class="container" ui-view></div>
+  <script src="js/angular.js"></script>
+  <script src="js/scripts.js"></script>
 </body>
 
 </html>

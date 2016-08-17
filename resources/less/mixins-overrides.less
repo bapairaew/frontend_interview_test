@@ -1,0 +1,57 @@
+// overrides specific mixins
+
+.button-variant(@color; @background; @border) {
+  color: @color;
+  background-color: @brand-primary;
+  border-color: transparent;
+  .box-shadow(0 3px 0 @border);
+
+  &:focus,
+  &.focus {
+    color: @color;
+    background-color: lighten(@background, 10%);
+    border-color: transparent;
+  }
+  &:hover {
+    color: @color;
+    background-color: lighten(@background, 10%);
+    border-color: transparent;
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    color: @color;
+    background-color: lighten(@background, 10%);
+    border-color: transparent;
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: @color;
+      background-color: lighten(@background, 17%);
+      border-color: transparent;
+    }
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    .box-shadow(0 3px 0 @border);
+
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: @background;
+      border-color: transparent;
+    }
+  }
+
+  .badge {
+    color: @background;
+    background-color: @color;
+  }
+}

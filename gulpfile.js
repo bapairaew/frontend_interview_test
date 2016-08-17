@@ -12,8 +12,11 @@ elixir(function (mix) {
 
     mix
         // bootstrap
-        .copy('bower_components/bootstrap/dist/css/*.min.css', 'resources/css/bootstrap.min.css')
+        // .copy('bower_components/bootstrap/dist/css/*.min.css', 'resources/css/bootstrap.min.css')
         .copy('bower_components/bootstrap/dist/fonts', 'public/fonts')
+
+        // bootstrap less
+        .less('bootstrap.less', 'resources/css/bootstrap.min.css')
 
         // sass
         .sass('style.scss')
@@ -40,4 +43,4 @@ elixir(function (mix) {
         // .version(["public/css/*.css", "js/*.js"])
     ;
 
-});
+})
